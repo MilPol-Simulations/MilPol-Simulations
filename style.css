@@ -37,3 +37,42 @@
 /* Keep content within its grid tracks instead of widening the mobile viewport. */
 .hero > *, .split > *, .variant-layout > *, .sectionhead > *, .grid4 > *, .store-grid > * { min-width:0; }
 img { max-width:100%; }
+
+
+/* W-3 development imagery: responsive on both the homepage and development page.
+   Keep these rules scoped so the existing site and authentication UI are unchanged. */
+.dev-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 28px;
+}
+.dev-strip > *, .dev-gallery > *, .dev-gallery figure { min-width: 0; }
+.dev-strip > img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.dev-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.dev-gallery figure { margin: 0; }
+.dev-gallery img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.dev-gallery figcaption { padding: 12px 0; color: var(--muted); font-size: 14px; }
+.dev-gallery figcaption strong { color: var(--text); }
+@media (max-width: 900px) {
+  .dev-strip { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+@media (max-width: 580px) {
+  .dev-gallery { grid-template-columns: minmax(0, 1fr); }
+}
