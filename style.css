@@ -76,3 +76,11 @@ img { max-width:100%; }
 @media (max-width: 580px) {
   .dev-gallery { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Six-language selector: consistent with MilPol's existing dark military UI. */
+.language-switcher {flex:0 0 auto;display:flex;align-items:center;margin-left:8px;}
+.language-select {background:#151a16;color:var(--text);border:1px solid var(--line);padding:8px 9px;font:700 13px Inter,Arial,sans-serif;max-width:150px;cursor:pointer;}
+.language-select:focus-visible {outline:2px solid var(--accent);outline-offset:2px;}
+@media(max-width:900px){.navin{flex-wrap:wrap}.language-switcher{margin-left:auto}.language-select{max-width:125px}.mobile-nav-toggle{order:2}.language-switcher{order:1}.navin .links{top:100%}}
+@media(max-width:420px){.brand img{width:clamp(115px,34vw,160px)}.language-select{max-width:108px;padding:7px 3px;font-size:12px}.mobile-nav-toggle{padding:7px 9px;gap:5px;font-size:13px}}
+html[lang=zh-CN] body{font-family:Inter,'Noto Sans CJK SC','Microsoft YaHei',sans-serif;}
