@@ -9,3 +9,8 @@ nav .navin .links a{display:block;padding:13px 16px;white-space:normal;border-bo
 nav .navin .links a:hover,nav .navin .links a:focus-visible{background:rgba(199,128,66,.14)}
 nav button.mobile-menu-toggle:focus-visible{outline:2px solid #d18742;outline-offset:3px}
 @media(max-width:580px){nav .navin{gap:8px}nav .language-select{max-width:120px}}
+
+/* Remove any stale legacy mobile button if cached scripts create it. */
+nav .mobile-nav-toggle{display:none!important}
+nav .navin{overflow:visible}
+nav .navin .links.is-open{visibility:visible!important;opacity:1!important;pointer-events:auto!important}
