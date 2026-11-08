@@ -84,3 +84,31 @@ img { max-width:100%; }
 @media(max-width:900px){.navin{flex-wrap:wrap}.language-switcher{margin-left:auto}.language-select{max-width:125px}.mobile-nav-toggle{order:2}.language-switcher{order:1}.navin .links{top:100%}}
 @media(max-width:420px){.brand img{width:clamp(115px,34vw,160px)}.language-select{max-width:108px;padding:7px 3px;font-size:12px}.mobile-nav-toggle{padding:7px 9px;gap:5px;font-size:13px}}
 html[lang=zh-CN] body{font-family:Inter,'Noto Sans CJK SC','Microsoft YaHei',sans-serif;}
+
+
+/* MilPol motion system — respects reduced-motion preferences. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: .18s ease-in both milpol-page-out; }
+::view-transition-new(root) { animation: .34s cubic-bezier(.2,.75,.2,1) both milpol-page-in; }
+@keyframes milpol-page-out { to { opacity:0; transform:translateY(-6px); } }
+@keyframes milpol-page-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes milpol-rise { from {opacity:0;transform:translateY(18px)} to {opacity:1;transform:translateY(0)} }
+@media (prefers-reduced-motion: no-preference) {
+  .hero .kicker,.pagehero .kicker {animation:milpol-rise .55s both}
+  .hero h1,.pagehero h1 {animation:milpol-rise .65s .08s both}
+  .hero .lead,.pagehero .lead {animation:milpol-rise .65s .16s both}
+  .hero .actions {animation:milpol-rise .65s .24s both}
+  .card,.btn {transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background-color .25s ease}
+  .card:hover {transform:translateY(-5px)}
+  .btn:hover {transform:translateY(-2px)}
+  .links a {position:relative;transition:color .2s ease,background-color .2s ease}
+  .links a::after {content:'';position:absolute;left:12px;right:12px;bottom:5px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+  .links a:hover::after,.links a[aria-current="page"]::after {transform:scaleX(1)}
+  .milpol-reveal {opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.75,.2,1)}
+  .milpol-reveal.is-visible {opacity:1;transform:none}
+}
+@media (prefers-reduced-motion: reduce) {
+  html {scroll-behavior:auto}
+  ::view-transition-old(root),::view-transition-new(root) {animation-duration:.01ms!important}
+  .milpol-reveal {opacity:1!important;transform:none!important}
+}
