@@ -1,0 +1,24 @@
+/* MilPol Forest Identity — RAL 6005 (approximate digital sRGB #114232).
+   Visual-only layer; no changes to authentication, CMS or application logic. */
+:root{--forest-ral6005:#114232;--forest-deep:#071711;--forest-olive:#b8bd67;--forest-orange:#d68a4e;--bg:#114232;--panel:#102a20;--panel2:#163529;--line:rgba(195,217,184,.2);--mp-ink:#114232;--mp-card:#132e23;--mp-stroke:rgba(195,217,184,.2)}
+html{background:#114232}
+body{background-color:#114232!important;background-image:radial-gradient(ellipse at 68% 6%,rgba(129,164,112,.18),transparent 42%),linear-gradient(180deg,#114232 0%,#103d2d 42%,#09261d 100%)!important;background-attachment:fixed!important;isolation:isolate;min-height:100vh}
+/* Two layers of genuine vector silhouettes, always anchored to the viewport floor. */
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('assets/forest-near.svg'),url('assets/forest-distant.svg');background-position:center calc(100% + 95px),center calc(100% + 28px);background-repeat:repeat-x,repeat-x;background-size:auto min(53vh,460px),auto min(66vh,580px);opacity:.79;transform:translate3d(0,var(--forest-drift,0px),0);will-change:transform}
+body>:not(script):not(style){position:relative;z-index:1}
+body>nav{position:sticky;z-index:30}
+body>.topline{z-index:31}
+nav{background:rgba(5,20,14,.93)!important;border-bottom:1px solid rgba(191,212,177,.21)!important;box-shadow:0 12px 38px rgba(0,0,0,.18)}
+/* Content surfaces remain readable over the forest artwork. */
+.card,.feature,.panel,.variant-panel,.stat-card,.auth-card,.article-card,.faq-item,.news-card{background-color:rgba(9,28,21,.9);border-color:rgba(187,213,174,.2);backdrop-filter:blur(8px)}
+.hero,.pagehero,.section,.page-section,main,section{background-color:transparent}
+.hero .container,.pagehero .container{position:relative}
+h1,h2,h3{color:#f3f4eb;text-shadow:0 2px 18px rgba(0,0,0,.12)}
+button,.btn,.button{transition:transform .32s cubic-bezier(.22,1,.36,1),box-shadow .32s ease,background-color .25s ease}
+button:hover,.btn:hover,.button:hover{transform:translateY(-2px)}
+input,textarea,select{border-color:rgba(197,219,182,.3)}
+footer{background:rgba(4,16,12,.88)!important;border-top:1px solid rgba(185,200,167,.2)}
+/* Restrained amber accents, retaining MilPol's existing brand palette. */
+.sectionhead:after{background:linear-gradient(90deg,var(--forest-orange),transparent)}
+@media(max-width:700px){body::after{background-size:auto 37vh,auto 47vh;background-position:center bottom,center bottom;opacity:.62}.card,.feature,.panel{backdrop-filter:none}}
+@media(prefers-reduced-motion:reduce){body::after{transform:none!important;will-change:auto}}
