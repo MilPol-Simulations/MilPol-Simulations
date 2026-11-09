@@ -6,3 +6,6 @@ nav.mp-nav .mp-nav-inner{display:flex!important;max-width:1250px!important;posit
 nav.mp-nav .mp-links{z-index:100001!important}
 nav.mp-nav .mp-links a{display:block!important}
 .mp-page-content .language-switcher{display:none!important}
+
+/* Stage 3 native React content */
+.mp-modern-main{max-width:1100px;margin:0 auto;padding:65px 24px 110px;min-height:65vh}.mp-kicker{color:#d7955c;font-weight:800;letter-spacing:.16em;font-size:12px}.mp-modern-main h1{font-size:clamp(32px,5vw,56px);margin:16px 0 20px}.mp-panel{background:#101612;border:1px solid #354137;border-radius:12px;padding:24px;margin:22px 0}.mp-news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:20px}.mp-post-image{width:100%;max-height:280px;object-fit:cover;border-radius:8px}.mp-preline{white-space:pre-wrap}.mp-form,.mp-form label{display:grid;gap:10px}.mp-form{gap:18px}.mp-form input,.mp-form textarea,.mp-form select{width:100%;padding:12px;background:#090e0a;color:#f1f1ed;border:1px solid #546252;border-radius:6px}.mp-actions{display:flex;flex-wrap:wrap;gap:10px}.mp-modern-main button{padding:11px 15px;background:#ba7a45;border:0;border-radius:5px;color:#10110f;font-weight:800;cursor:pointer}.mp-modern-main button:disabled{opacity:.5;cursor:not-allowed}
