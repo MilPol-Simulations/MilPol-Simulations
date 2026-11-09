@@ -1,0 +1,16 @@
+/* Reliable shared desktop/mobile dropdown. Loaded after all other styles. */
+nav .navin{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:12px}
+nav .brand{margin-right:auto}
+nav .language-switcher{order:1;margin-left:auto}
+nav button.mobile-menu-toggle{display:inline-flex!important;order:2;align-items:center;justify-content:center;min-width:44px;min-height:44px;cursor:pointer;touch-action:manipulation;position:relative;z-index:2}
+nav .navin .links,nav .navin .links.mobile-open{display:none!important;position:absolute;top:100%;left:0;right:0;z-index:100;max-height:calc(100dvh - 75px);overflow-y:auto;flex-direction:column;align-items:stretch;gap:0;padding:8px;background:#141c15;border:1px solid rgba(199,128,66,.35);box-shadow:0 18px 36px rgba(0,0,0,.5)}
+nav .navin .links.is-open,nav .navin .links.is-open.mobile-open{display:flex!important}
+nav .navin .links a{display:block;padding:13px 16px;white-space:normal;border-bottom:1px solid rgba(255,255,255,.07);font-size:15px}
+nav .navin .links a:hover,nav .navin .links a:focus-visible{background:rgba(199,128,66,.14)}
+nav button.mobile-menu-toggle:focus-visible{outline:2px solid #d18742;outline-offset:3px}
+@media(max-width:580px){nav .navin{gap:8px}nav .language-select{max-width:120px}}
+
+/* Remove any stale legacy mobile button if cached scripts create it. */
+nav .mobile-nav-toggle{display:none!important}
+nav .navin{overflow:visible}
+nav .navin .links.is-open{visibility:visible!important;opacity:1!important;pointer-events:auto!important}
