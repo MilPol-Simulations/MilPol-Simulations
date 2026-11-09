@@ -47,3 +47,31 @@ h1,h2,h3{color:#f1f2eb;text-shadow:none!important}
 .mp-transition-curtain::after{color:#e4e7e2}
 @media(max-width:760px){body::before{background-size:100px 100px,400px 100%;opacity:.27}.card::before,.feature::before,.panel::before{opacity:.4}}
 @media(prefers-reduced-motion:reduce){body::before{transform:none!important}}
+
+/* 2026-11-09: visible aircraft-skin pattern + navigation stacking repair.
+   The rivets live in the BODY background, so no opaque overlay or pseudo
+   stacking context can accidentally conceal them. */
+html{background:#050606!important}
+body{
+  background-color:#050606!important;
+  background-image:
+    radial-gradient(circle at 18px 18px, #879086 0 1.3px, #262d28 1.5px 3px, transparent 3.3px),
+    linear-gradient(90deg,transparent 0 17px,rgba(139,151,138,.10) 17.5px 18px,transparent 18.5px 100%),
+    linear-gradient(0deg,transparent 0 17px,rgba(139,151,138,.07) 17.5px 18px,transparent 18.5px 100%)!important;
+  background-size:92px 92px,368px 368px,368px 368px!important;
+  background-position:0 0,0 0,0 0!important;
+  background-attachment:fixed!important;
+  isolation:auto!important;
+}
+body::before{content:none!important;display:none!important}
+/* Remove the earlier blanket z-index rule: it promoted every page element
+   into a competing stacking context, hiding the dropdown. */
+body>:not(script):not(style){z-index:auto}
+body>nav,nav{position:sticky!important;top:0;z-index:100000!important;isolation:isolate;overflow:visible!important}
+nav .navin{position:relative;overflow:visible!important}
+nav .navin .links{z-index:100001!important;background:#0d100e!important;box-shadow:0 22px 55px rgba(0,0,0,.85)!important}
+nav .navin .links.is-open{pointer-events:auto!important;visibility:visible!important}
+main,header,section,footer,.pagehero,.hero{z-index:auto!important}
+/* Keep full-page transitions above the navigation when active. */
+.mp-transition-curtain{z-index:2147483640!important}
+@media(max-width:760px){body{background-size:76px 76px,304px 304px,304px 304px!important}}
