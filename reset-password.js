@@ -1,2 +1,0 @@
-import {supabase} from './auth-client.js';
-document.getElementById('reset-form').addEventListener('submit',async e=>{e.preventDefault();const msg=document.getElementById('reset-message');if(!supabase){msg.textContent='Authentication is not configured.';return;}const {error}=await supabase.auth.updateUser({password:document.getElementById('new-password').value});msg.textContent=error?error.message:'Password updated. You can now sign in.';});
