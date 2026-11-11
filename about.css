@@ -1,0 +1,20 @@
+/* About MilPol — scoped to the new page */
+.about-hero{padding:clamp(48px,7vw,96px) 0 70px;background:linear-gradient(130deg,rgba(21,30,22,.95),rgba(32,43,29,.68));border-bottom:1px solid rgba(215,154,75,.23)}
+.about-hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(24px,5vw,72px)}
+.about-hero h1{font-size:clamp(2.5rem,5vw,5.4rem);line-height:1.04;letter-spacing:-.04em;max-width:720px;margin:.7rem 0 1.5rem}
+.about-hero .lead{max-width:650px;line-height:1.75}
+.about-visual,.about-programme-image{position:relative;overflow:hidden;border:1px solid rgba(221,153,67,.25);background:#182019;border-radius:6px;box-shadow:0 18px 55px rgba(0,0,0,.2)}
+.about-visual img,.about-programme-image img{display:block;width:100%;height:100%;min-height:330px;object-fit:cover}
+.about-visual-caption{position:absolute;bottom:0;left:0;right:0;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.84));font-size:.72rem;letter-spacing:.13em;color:#e6d9c5}
+.about-section{padding:clamp(55px,7vw,105px) 0}
+.about-section h2,.about-programme h2{font-size:clamp(2rem,3.5vw,3.5rem);line-height:1.08;letter-spacing:-.025em;margin:.7rem 0 1.25rem}
+.about-wide{max-width:760px;line-height:1.8;color:var(--muted,#b9c1b6)}
+.about-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:36px}
+.about-value{padding:clamp(22px,3vw,36px);background:rgba(255,255,255,.025);border:1px solid rgba(210,155,79,.23);border-top:3px solid var(--accent,#c98240)}
+.about-value h3{font-size:1.02rem;letter-spacing:.07em;margin:0 0 16px}.about-value p{line-height:1.75;margin:0;color:var(--muted,#b9c1b6)}
+.about-programme{padding:clamp(55px,7vw,95px) 0;background:rgba(0,0,0,.15);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.about-programme-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(28px,5vw,75px)}
+.about-programme p{line-height:1.8;color:var(--muted,#b9c1b6);margin-bottom:25px}
+.about-closing{text-align:center}.about-closing .about-wide{margin:15px auto 30px}
+@media(max-width:800px){.about-hero-grid,.about-programme-grid{grid-template-columns:1fr}.about-values{grid-template-columns:1fr}.about-visual img,.about-programme-image img{min-height:220px;max-height:380px}.about-hero{padding-top:42px}.about-programme-grid .about-programme-image{order:2}}
+@media(prefers-reduced-motion:reduce){.about-visual,.about-value{animation:none!important;transition:none!important}}

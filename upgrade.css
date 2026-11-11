@@ -1,0 +1,52 @@
+/* MilPol 2026: additive responsive, aircraft and journal design */
+:root{--upgrade-border:rgba(199,128,66,.3)}
+nav{position:sticky;top:0;z-index:1000;backdrop-filter:blur(16px)}
+nav .navin{min-height:58px;gap:16px}
+nav .brand img{width:40px;height:40px;object-fit:contain}
+nav .links{display:flex;align-items:center;gap:clamp(8px,1.5vw,22px)}
+nav .links a{white-space:nowrap}
+nav .links a[aria-current="page"]{color:var(--accent,#d18742);box-shadow:inset 0 -2px currentColor}
+.mobile-menu-toggle{display:none;cursor:pointer;color:#f2eee5;border:1px solid var(--upgrade-border);background:#20291f;border-radius:7px;padding:8px 12px;font-size:20px}
+.variant-layout-upgrade{align-items:stretch;gap:clamp(24px,4vw,60px)}
+.variant-layout-upgrade .hero-art{min-width:0}
+.variant-panel{border:1px solid var(--upgrade-border);padding:clamp(18px,3vw,36px);background:linear-gradient(145deg,rgba(44,55,41,.4),rgba(16,22,17,.2))}
+.upgrade-eyebrow,.upgrade-status,.upgrade-disclaimer{letter-spacing:.1em;text-transform:uppercase;font-size:12px;color:var(--accent,#d18742)}
+.upgrade-status{margin-top:20px;padding-top:15px;border-top:1px solid var(--upgrade-border)}
+.upgrade-disclaimer{opacity:.75;letter-spacing:.04em}
+.variant-crosslinks,.fleet-comparison,.news-promo{padding:44px 0}
+.variant-link-grid,.comparison-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}
+.variant-mini,.comparison-item{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit;padding:22px;background:rgba(40,50,38,.65);border:1px solid var(--upgrade-border);transition:transform .2s,border-color .2s}
+.variant-mini:hover,.comparison-item:hover{transform:translateY(-3px);border-color:var(--accent,#d18742)}
+.variant-mini.is-current{border-color:var(--accent,#d18742)}
+.comparison-item span{opacity:.75}.comparison-item small{color:var(--accent,#d18742)}
+.timeline-interactive .step{align-items:start}
+.milestone-detail{min-width:0;width:100%}
+.milestone-detail summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.milestone-detail summary::-webkit-details-marker{display:none}
+.milestone-detail summary::after{content:'+';font-size:24px;color:var(--accent,#d18742)}
+.milestone-detail[open] summary::after{content:'−'}
+.milestone-detail summary h3{margin:0}
+.milestone-detail p{margin-top:14px}
+.news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:26px}
+.news-card{overflow:hidden;background:#20291f;border:1px solid var(--upgrade-border)}
+.news-card img{display:block;width:100%;height:220px;object-fit:cover}
+.news-card-body{padding:24px}.news-card-body p{line-height:1.7;opacity:.8}.news-card-body a{color:var(--accent,#d18742)}
+.news-promo-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;border-top:1px solid var(--upgrade-border);border-bottom:1px solid var(--upgrade-border)}
+.news-promo h2{margin:8px 0}
+@media(max-width:850px){
+ nav .navin{display:flex;flex-wrap:wrap;justify-content:space-between;min-height:56px}
+ nav .brand img{width:36px;height:36px}
+ .mobile-menu-toggle{display:block;margin-left:auto}
+ nav .links{display:none!important;order:4;flex-basis:100%;width:100%;flex-direction:column;align-items:stretch;gap:0;padding:8px 0 16px}
+ nav .links.is-open{display:flex!important}
+ nav .links a{display:block;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+ nav .language-switcher{order:3}
+ .variant-link-grid,.comparison-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:580px){
+ .variant-link-grid,.comparison-grid,.news-grid{grid-template-columns:1fr}
+ .news-promo-inner{flex-direction:column;align-items:flex-start}
+ .news-card img{height:180px}
+}
+@media(prefers-reduced-motion:reduce){.variant-mini,.comparison-item{transition:none}.variant-mini:hover,.comparison-item:hover{transform:none}}
