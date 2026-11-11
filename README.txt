@@ -1,0 +1,1 @@
+Stage 5.2 photo-only update. Upload the three files to the corresponding paths in your existing working repository. The existing W-3RM front image filename is intentionally reused; the new underside image is added to the development gallery. No router, scripts, backend or other site files are changed.
