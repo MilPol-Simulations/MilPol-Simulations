@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import {BrowserRouter,Link,useLocation,useNavigate} from 'react-router-dom';
+import {HashRouter,Link,useLocation,useNavigate} from 'react-router-dom';
 import {AnimatePresence,motion} from 'framer-motion';
 import {createClient} from '@supabase/supabase-js';
 import pages from './pages.json';
@@ -15,7 +15,9 @@ import './react.css';
 
 const BASE = import.meta.env.BASE_URL;
 const assetUrl = (path) => `${BASE}${path.replace(/^\/+/, '')}`;
-const fixPublicUrls = (html) => html.replace(/(\b(?:src|href|poster)\s*=\s*["'])(\/?(?:assets|downloads)\/[^"']+)(["'])/gi, (_match, prefix, path, suffix) => `${prefix}${assetUrl(path)}${suffix}`);
+const fixPublicUrls = (html) => html
+  .replace(/(\b(?:src|href|poster)\s*=\s*["'])(\/?(?:assets|downloads)\/[^"']+)(["'])/gi, (_match, prefix, path, suffix) => `${prefix}${assetUrl(path)}${suffix}`)
+  .replace(/(\bhref\s*=\s*["'])(\/?(?:index|about|account|admin|development|fleet|future|login|news|reset-password|store|support|w3|w3pl|w3rm|w3warm)\.html)(["'])/gi, (_m,prefix,path,suffix) => `${prefix}#/${path.replace(/^\//,'').replace(/\.html$/,'').replace(/^index$/,'')}${suffix}`);
 const names=[['Home','/'],['W-3 Family','/fleet'],['Development','/development'],['What comes next?','/future'],['News & updates','/news'],['About MilPol','/about'],['FAQ & Support','/support'],['Store','/store']];
 
 function Nav(){const [open,setOpen]=useState(false);const [user,setUser]=useState(null);const location=useLocation();useEffect(()=>{setOpen(false)},[location.pathname]);useEffect(()=>{supabase.auth.getUser().then(({data})=>setUser(data.user));const {data:{subscription}}=supabase.auth.onAuthStateChange((_event,session)=>setUser(session?.user||null));return()=>subscription.unsubscribe()},[]);useEffect(()=>{const onKey=e=>{if(e.key==='Escape')setOpen(false)};document.addEventListener('keydown',onKey);return()=>document.removeEventListener('keydown',onKey)},[]);return <nav className="mp-nav"><div className="mp-nav-inner"><Link to="/" className="mp-logo"><img src={assetUrl("assets/milpol-emblem.webp")} alt="MilPol Simulations"/><span>MILPOL <small>SIMULATIONS</small></span></Link><button className="mp-toggle" onClick={()=>setOpen(v=>!v)} aria-label={open?'Close navigation':'Open navigation'} aria-expanded={open} aria-controls="mp-menu"><span className="mp-hamburger" aria-hidden="true">{open?'×':'☰'}</span><span>{open?'Close':'Menu'}</span></button><div className={'mp-links '+(open?'open':'')} id="mp-menu">{names.map(([name,path])=><Link className={location.pathname===path?'active':''} key={path} to={path}>{name}</Link>)}<Link to={user?'/account':'/login'}>{user?'Account':'Sign in'}</Link></div></div></nav>}
@@ -25,5 +27,8 @@ function Auth(){const [email,setEmail]=useState(''),[password,setPassword]=useSt
 function Reset(){const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[recovery,setRecovery]=useState(false),[msg,setMsg]=useState('');useEffect(()=>{const detect=()=>{const h=window.location.hash;const q=new URLSearchParams(window.location.search);if(h.includes('type=recovery')||q.get('type')==='recovery')setRecovery(true)};detect();const {data:{subscription}}=supabase.auth.onAuthStateChange(event=>{if(event==='PASSWORD_RECOVERY')setRecovery(true)});return()=>subscription.unsubscribe()},[]);async function submit(e){e.preventDefault();if(recovery){const {error}=await supabase.auth.updateUser({password});setMsg(error?.message||'Password updated. You can now sign in.')}else{const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+BASE+'reset-password'});setMsg(error?.message||'Check your email for a password reset link.')}}return <main className="mp-auth"><h1>{recovery?'Set a new password':'Reset password'}</h1><form onSubmit={submit}>{recovery?<label>New password<input type="password" minLength="6" required value={password} onChange={e=>setPassword(e.target.value)}/></label>:<label>Email<input type="email" required value={email} onChange={e=>setEmail(e.target.value)}/></label>}<button>{recovery?'Update password':'Send reset link'}</button></form><p role="status">{msg}</p></main>}
 function Future(){return <><Content name="future"/><main className="mp-modern-main"><FuturePoll/></main></>}
 function App(){const loc=useLocation();const key=loc.pathname.replace(/^\/+|\/+$/g,'')||'index';useEffect(()=>{window.scrollTo({top:0,behavior:'instant'})},[loc.pathname]);return <><Nav/><Announcement/><AnimatePresence mode="wait" initial={false}><motion.div key={loc.pathname} initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-10}} transition={{duration:.24,ease:[.22,1,.36,1]}}>{key==='login'?<Auth/>:key==='account'?<Account/>:key==='reset-password'?<Reset/>:key==='news'?<News/>:key==='admin'?<Admin/>:key==='future'?<Future/>:key==='store'?<Store/>:<Content name={key}/>}</motion.div></AnimatePresence><Footer/></>}
-const redirect=sessionStorage.getItem('redirect');if(redirect){sessionStorage.removeItem('redirect');history.replaceState(null,'',redirect)}
-createRoot(document.getElementById('root')).render(<BrowserRouter basename={BASE.replace(/\/$/, "") || "/"}><App/></BrowserRouter>);
+// Migrate older direct links and preserve the intended page on GitHub Pages.
+const redirect=sessionStorage.getItem('redirect');
+if(redirect){sessionStorage.removeItem('redirect');const target=new URL(redirect,location.origin);if(target.pathname!=='/' && target.pathname!=='/index.html'){history.replaceState(null,'','/#'+target.pathname.replace(/\.html$/,'')+target.search)}else if(target.hash){history.replaceState(null,'/'+target.hash)}}
+else if(location.pathname!=='/' && location.pathname!=='/index.html') {history.replaceState(null,'/#'+location.pathname.replace(/\.html$/,'')+location.search+location.hash)}
+createRoot(document.getElementById('root')).render(<HashRouter><App/></HashRouter>);
