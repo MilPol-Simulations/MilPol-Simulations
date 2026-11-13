@@ -43,3 +43,14 @@ nav.mp-nav .mp-links a{padding:13px 16px!important;font-size:14px!important}
 @media(max-width:800px){.milpol-cinematic-hero{min-height:680px}.milpol-hero-photo{background-position:52% 32%}.milpol-hero-shade{background:linear-gradient(0deg,rgba(4,4,4,.97) 0%,rgba(4,4,4,.92) 25%,rgba(4,4,4,.66) 56%,rgba(4,4,4,.12) 100%)}.milpol-hero-inner{justify-content:flex-end;padding:90px 24px 48px}.milpol-hero-copy{padding:170px 0 85px}.milpol-cinematic-hero h1{font-size:clamp(46px,10vw,78px)}.milpol-hero-bottom{left:24px;right:24px;bottom:24px}}
 @media(max-width:460px){.milpol-cinematic-hero{min-height:690px}.milpol-hero-photo{background-size:auto 72%;background-position:center top}.milpol-hero-copy{padding:210px 0 85px}.milpol-cinematic-hero h1{font-size:clamp(39px,10.1vw,55px)}.milpol-hero-eyebrow{font-size:12px;letter-spacing:2px}.milpol-hero-description{font-size:15px}.milpol-hero-bottom{font-size:10px;letter-spacing:1px}}
 @media(prefers-reduced-motion:no-preference){.milpol-hero-copy{animation:milpol-hero-enter .8s ease-out both}@keyframes milpol-hero-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}}
+
+/* Homepage hero refinement: darker backdrop, copy moved away from aircraft centre. */
+@media(min-width:801px){
+  .milpol-hero-inner{width:100%;max-width:1600px;padding-left:clamp(28px,3.4vw,58px);padding-right:clamp(28px,3.4vw,58px)}
+  .milpol-hero-copy{max-width:620px;transform:translateX(-6px)}
+  .milpol-cinematic-hero h1{font-size:clamp(52px,6.0vw,92px)}
+  .milpol-hero-description{max-width:475px}
+  .milpol-hero-bottom{left:clamp(28px,3.4vw,58px);right:clamp(28px,3.4vw,58px)}
+}
+.milpol-hero-shade{background:linear-gradient(90deg,rgba(2,2,2,.98) 0%,rgba(3,3,3,.94) 19%,rgba(4,3,3,.73) 37%,rgba(4,3,3,.28) 61%,rgba(3,3,3,.34) 100%),linear-gradient(0deg,rgba(2,2,2,.94) 0%,rgba(2,2,2,.22) 32%,rgba(2,2,2,.30) 75%,rgba(2,2,2,.55) 100%)}
+@media(max-width:800px){.milpol-hero-shade{background:linear-gradient(0deg,rgba(2,2,2,.98) 0%,rgba(3,3,3,.94) 27%,rgba(3,3,3,.70) 56%,rgba(2,2,2,.26) 100%)}}
