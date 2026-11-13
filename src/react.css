@@ -72,3 +72,24 @@ nav.mp-nav .mp-links a{padding:13px 16px!important;font-size:14px!important}
 @media (max-width:800px){
   .milpol-hero-shade{background:linear-gradient(0deg,rgba(1,1,1,.97) 0%,rgba(2,2,2,.88) 24%,rgba(2,2,2,.38) 51%,rgba(0,0,0,.05) 75%,rgba(0,0,0,.20) 100%);}
 }
+
+
+/* MilPol homepage: reversible scroll-linked fade. CSS only; no routing or JS changes.
+   Scroll down to fade, scroll back up to restore. Header/menu and other pages unaffected. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll(root block)) {
+    .milpol-cinematic-hero .milpol-hero-photo,
+    .milpol-cinematic-hero .milpol-hero-inner {
+      animation-name: milpol-scroll-fade;
+      animation-duration: 1s; /* timeline determines progress, not elapsed time */
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: scroll(root block);
+      animation-range: 0px 620px;
+    }
+    @keyframes milpol-scroll-fade {
+      0%, 8% { opacity: 1; }
+      100% { opacity: .08; }
+    }
+  }
+}
